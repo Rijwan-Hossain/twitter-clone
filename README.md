@@ -1,4 +1,4 @@
-# twitter-clone 
+# Twitter-Clone 
 Though I have done few projects in react-redux but this is my first project on react-hooks with redux. 
 
 # Backend-Technology 
