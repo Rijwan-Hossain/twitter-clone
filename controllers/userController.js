@@ -1,4 +1,4 @@
-const User = require('../model/User') 
+const User = require('../models/User') 
 const bcrypt = require('bcryptjs') 
 const jwt = require('jsonwebtoken')
 
@@ -128,10 +128,59 @@ const login = (req, res) => {
                 error: 'Server Error' 
             }) 
         }) 
+} 
+
+
+const users = (req, res) => {
+    User.find() 
+        .then(users => {
+            res.json({
+                users
+            })
+        })
+        .catch(err => console.log(err))
 }
+
+
+const singleUser = (req, res) => {
+    let { id } = req.params 
+    console.log(id);
+    
+    User.findById(id) 
+        .then(user => { 
+            console.log(user);
+            
+            res.status(200).json({ 
+                status: 'success',
+                user 
+            })
+        })
+        .catch(err => console.log(err))
+}
+
+
+const updateUser = (req, res) => {
+    let { id } = req.params 
+    User.findByIdAndUpdate({_id: id}, {$set: req.body}, {new: true}) 
+        .then(user => { 
+            return res.status(200).json({ 
+                status: 'success', 
+                user 
+            }) 
+        }) 
+        .catch(err => {
+            return res.status(400).json({ 
+                status: 'fail', 
+                message: 'Server Error'
+            }) 
+        }) 
+} 
 
 module.exports = { 
     registration, 
-    login
+    login, 
+    users, 
+    singleUser, 
+    updateUser
 } 
 
