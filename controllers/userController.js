@@ -131,14 +131,19 @@ const login = (req, res) => {
 } 
 
 
-const users = (req, res) => {
+const users = (req, res) => { 
     User.find() 
-        .then(users => {
-            res.json({
-                users
-            })
-        })
-        .catch(err => console.log(err))
+        .then(users => { 
+            res.json({ 
+                users 
+            }) 
+        }) 
+        .catch(err => {
+            return res.json({ 
+                status: 'Fail',
+                error: 'Server Error' 
+            }) 
+        }) 
 }
 
 
@@ -155,7 +160,12 @@ const singleUser = (req, res) => {
                 user 
             })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            return res.json({ 
+                status: 'Fail',
+                error: 'Server Error' 
+            }) 
+        })
 }
 
 

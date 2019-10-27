@@ -1,11 +1,19 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom' 
+import Nav from './components/Navigation/Nav'
 
 function App() { 
   return ( 
-    <div className="App"> 
-      <h2>Twitter Clone</h2> 
-    </div> 
+    <BrowserRouter> 
+      <div> 
+        <Nav /> 
+        <Switch> 
+          {/* <Route path="/" component={Home} exact />  */}
+          {/* import Dietplan from './Components/DietPlan/Dietplan' */} 
+          {/* <Route path="/diet" component={Dietplan} />  */} 
+        </Switch> 
+      </div> 
+    </BrowserRouter> 
   ); 
 } 
 

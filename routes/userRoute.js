@@ -14,9 +14,4 @@ route.get('/users', users)
 route.get('/user/:id', singleUser) 
 route.patch('/user/:id', updateUser) 
 
-// user create 
-// user login 
-// single user 
-// user update 
-
 module.exports = route; 

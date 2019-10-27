@@ -22,7 +22,11 @@ const UserSchema = new Schema({
         type: String, 
         trim: true
     }, 
-    avatar: String
+    avatar: String, 
+    isAuthenticated: { 
+        type: Boolean, 
+        default: false 
+    } 
 }, 
 { 
     timeStamps: true 

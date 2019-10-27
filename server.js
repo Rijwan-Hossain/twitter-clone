@@ -7,16 +7,16 @@ const userRoute = require('./routes/userRoute')
 const app = express() 
 
 // Middlewere 
-app.use(express.json()) 
 app.use(cors()) 
+app.use(express.json()) 
 app.use(morgan('dev')) 
 
 
 // Route 
-app.use('/api', userRoute)
+app.use('/api', userRoute) 
 app.get('/', (req, res) => { 
     res.status(200).json({ 
-        message: 'Hello World' 
+        message: 'Hello World for home' 
     }) 
 })
 
