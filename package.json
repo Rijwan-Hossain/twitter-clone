@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "MERN stack project. MongoDB, Express, React-Hook with Redux, NodeJS",
   "main": "server.js",
-  "scripts": {
+  "scripts": { 
     "client": "npm start --prefix client",
     "start": "nodemon server.js",
     "dev": "concurrently \" npm run client \" \" npm run start \" "

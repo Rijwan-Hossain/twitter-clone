@@ -1,6 +1,6 @@
 const mongoose = require('mongoose') 
 
-const Schema = mongoose.model 
+const Schema = mongoose.Schema 
 const UserSchema = new Schema({ 
     name: { 
         type: String, 
@@ -18,10 +18,14 @@ const UserSchema = new Schema({
         trim: true, 
         require: true
     }, 
+    bio: {
+        type: String, 
+        trim: true
+    }, 
     avatar: String
 }, 
 {
-    timeStamp: true
+    timeStamps: true
 }) 
 
 const User = new mongoose.model('User', UserSchema); 
