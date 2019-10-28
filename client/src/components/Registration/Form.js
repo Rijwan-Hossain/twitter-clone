@@ -15,7 +15,6 @@ function Form(props) {
     let [passNoMatch, setPassNoMatch] = useState(false) 
     let [ok, setOk] = useState(false) 
 
-
     const submitHandler = (e) => { 
         e.preventDefault() 
         if(password === confirmPassword) { 

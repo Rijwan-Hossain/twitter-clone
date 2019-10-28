@@ -64,14 +64,17 @@ const registration = (req, res) => {
 } 
 
 
-const login = (req, res) => {
+const login = (req, res) => { 
     // get data 
     // validate email 
     // check email available or not 
     // password match 
+    // set isLogin --> true 
     // create & return token 
 
     let { email, password } = req.body; 
+    console.log(req.body); 
+    
 
     // validate email 
     let i = 0, validate = false; 
@@ -88,8 +91,8 @@ const login = (req, res) => {
     // check email available or not 
     User.findOne({email}) 
         .then(user => { 
-            if(!user) {
-                return res.json({
+            if(!user) { 
+                return res.json({ 
                     status: 'Fail', 
                     message: 'Invalid Email' 
                 }) 
@@ -110,17 +113,29 @@ const login = (req, res) => {
                     }) 
                 } 
 
-                const payload = {
-                    id: user._id, 
-                    email: user.email 
-                } 
-
-                const token = jwt.sign(payload, 'SECRET', {expiresIn: '6h'}) 
-
-                return res.json({ 
-                    status: 'Success', 
-                    token: `Bearer ${token}`
-                }) 
+                User.findByIdAndUpdate( 
+                    {_id: user._id}, 
+                    {$set: {isLogin: true}}, 
+                    {new: true}) 
+                    .then(loginUser => { 
+                        const payload = { 
+                            id: loginUser._id, 
+                            email: loginUser.email 
+                        } 
+        
+                        const token = jwt.sign(payload, 'SECRET', {expiresIn: '6h'}) 
+                        
+                        return res.json({ 
+                            status: 'Success', 
+                            token: `Bearer ${token}` 
+                        }) 
+                    }) 
+                    .catch(err => {
+                        return res.json({ 
+                            error: 'Server Error' 
+                        }) 
+                    })
+                
             })
         }) 
         .catch(err => { 
