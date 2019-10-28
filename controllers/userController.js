@@ -11,7 +11,7 @@ const registration = (req, res) => {
     // save user
 
     let { name, email, password } = req.body; 
-
+    
     // validate email 
     let i = 0, validate = false; 
     for(i = 0; i < email.length; i++) {
@@ -36,7 +36,7 @@ const registration = (req, res) => {
             bcrypt.hash(password, 10, (err, hash) => {
                 if(err) {
                     return res.json({ 
-                        error: err
+                        error: 'Server Error'
                     }) 
                 }
                     
@@ -51,7 +51,7 @@ const registration = (req, res) => {
                 newUser.save() 
                     .then(() => { 
                         return res.json({ 
-                            message: 'Registration Successful' 
+                            status: 'Success' 
                         }) 
                     }) 
             }) 
