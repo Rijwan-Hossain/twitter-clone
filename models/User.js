@@ -4,7 +4,6 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({ 
     name: { 
         type: String, 
-        length: 40, 
         trim: true, 
         require: true
     }, 
@@ -23,7 +22,7 @@ const UserSchema = new Schema({
         trim: true
     }, 
     avatar: String, 
-    isAuthenticated: { 
+    isLogin: { 
         type: Boolean, 
         default: false 
     } 

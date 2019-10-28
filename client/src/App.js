@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom' 
 import Nav from './components/Navigation/Nav'
+import Home from './components/Home/Home'
+import Registration from './components/Registration/Registration'
 
 function App() { 
   return ( 
@@ -8,9 +10,8 @@ function App() {
       <div> 
         <Nav /> 
         <Switch> 
-          {/* <Route path="/" component={Home} exact />  */}
-          {/* import Dietplan from './Components/DietPlan/Dietplan' */} 
-          {/* <Route path="/diet" component={Dietplan} />  */} 
+          <Route path="/" component={Home} exact /> 
+          <Route path="/registration" component={Registration} />  
         </Switch> 
       </div> 
     </BrowserRouter> 

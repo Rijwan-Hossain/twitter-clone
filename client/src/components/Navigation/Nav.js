@@ -7,7 +7,7 @@ function Nav() {
          <div className='container'>
             <Link to='/'>
                <span className='navbar-brand'> 
-                  <h4>Twitter Clone</h4> 
+                  <h4>Meet Twitt</h4> 
                </span> 
             </Link> 
             <button 
@@ -17,11 +17,11 @@ function Nav() {
                dataTarget='#nav'> 
                <span className='navbar-toggler-icon'></span> 
             </button> 
-            <div className='collapse navbar-collapse' id='nav'>
+            <div className='collapse navbar-collapse' id='nav'> 
                <ul className='navbar-nav ml-auto'> 
-                  {
-                     null ?
-                     <React.Fragment>
+                  { 
+                     null ? 
+                     <React.Fragment> 
                         <li className='nav-item'> 
                            <NavLink to='/' activeClassName='active' exact> 
                               <span className='nav-link'> 
@@ -37,11 +37,9 @@ function Nav() {
                            </NavLink> 
                         </li> 
                         <li className='nav-item'> 
-                           <NavLink to='/logout' activeClassName='active'>
-                              <span className='nav-link'> 
-                                 Logout 
-                              </span> 
-                           </NavLink> 
+                           <button className='btn btn-outline-info text-white'> 
+                              Logout 
+                           </button> 
                         </li> 
                      </React.Fragment> 
                      : 
