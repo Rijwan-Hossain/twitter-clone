@@ -1,7 +1,8 @@
 import React, { useState } from 'react' 
 import axios from 'axios'
+import { withRouter } from 'react-router-dom' 
 
-function Form() { 
+function Form(props) { 
     // let [state, setState] = useState({})
     let [name, setName] = useState('') 
     let [email, setEmail] = useState('') 
@@ -29,6 +30,11 @@ function Form() {
 
                     let {status} = res.data 
                     setOk(status) 
+                    if(status) {
+                        setTimeout(() => { 
+                            props.history.push('/login') 
+                        }, 2000) 
+                    } 
                 }) 
                 .catch(err => { 
                     console.log('Server Error, ' + err); 
@@ -138,4 +144,4 @@ function Form() {
     ) 
 } 
 
-export default Form
+export default withRouter(Form) 
