@@ -1,36 +1,37 @@
-{ 
+{
   "name": "twitter-clone",
   "version": "1.0.0",
   "description": "MERN stack project. MongoDB, Express, React-Hook with Redux, NodeJS",
   "main": "server.js",
-  "scripts": { 
+  "scripts": {
     "client": "npm start --prefix client",
     "start": "nodemon server.js",
     "dev": "concurrently \" npm run client \" \" npm run start \" "
   },
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/Rijwan-Hossain/twitter-clone.git"
-  }, 
-  "author": "Rijwan Hossain", 
-  "license": "ISC", 
-  "bugs": { 
+  },
+  "author": "Rijwan Hossain",
+  "license": "ISC",
+  "bugs": {
     "url": "https://github.com/Rijwan-Hossain/twitter-clone/issues"
   },
   "homepage": "https://github.com/Rijwan-Hossain/twitter-clone#readme",
-  "dependencies": { 
+  "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1"
-  }, 
-  "devDependencies": { 
+  },
+  "devDependencies": {
     "nodemon": "^1.19.4"
   },
-  "engines": { 
+  "engines": {
     "node": "8.11.4"
-  } 
-} 
+  }
+}

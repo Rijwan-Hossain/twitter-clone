@@ -74,7 +74,6 @@ const login = (req, res) => {
 
     let { email, password } = req.body; 
     console.log(req.body); 
-    
 
     // validate email 
     let i = 0, validate = false; 
@@ -84,17 +83,16 @@ const login = (req, res) => {
     if(!validate) { 
         return res.status(400).json({ 
             status: 'Fail',
-            message: 'Enter a valid email'
+            invalidEmailMsg: 'Enter a valid email'
         }) 
     } 
-
     // check email available or not 
     User.findOne({email}) 
         .then(user => { 
             if(!user) { 
                 return res.json({ 
                     status: 'Fail', 
-                    message: 'Invalid Email' 
+                    invalidEmailMsg: 'Incorrect Email' 
                 }) 
             } 
 
@@ -109,10 +107,11 @@ const login = (req, res) => {
                 if(!result) {
                     return res.json({ 
                         status: 'Fail',
-                        message: 'Wrong Password' 
+                        invalidPassMsg: 'Wrong Password' 
                     }) 
                 } 
 
+                
                 User.findByIdAndUpdate( 
                     {_id: user._id}, 
                     {$set: {isLogin: true}}, 
@@ -125,9 +124,18 @@ const login = (req, res) => {
         
                         const token = jwt.sign(payload, 'SECRET', {expiresIn: '6h'}) 
                         
+                        let sendUserData = {
+                            id: loginUser._id, 
+                            email: loginUser.email, 
+                            isLogin: loginUser.isLogin, 
+                            bio: loginUser.bio || '', 
+                            avatar: loginUser.avatar || ''
+                        } 
+                        
                         return res.json({ 
                             status: 'Success', 
-                            token: `Bearer ${token}` 
+                            token: `Bearer ${token}`, 
+                            user: sendUserData 
                         }) 
                     }) 
                     .catch(err => {

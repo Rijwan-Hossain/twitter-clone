@@ -1,6 +1,6 @@
 import React, { useState } from 'react' 
 import axios from 'axios'
-import { withRouter } from 'react-router-dom' 
+import { withRouter, Link } from 'react-router-dom' 
 
 function Form(props) { 
     // let [state, setState] = useState({})
@@ -122,6 +122,8 @@ function Form(props) {
                         </div> 
                     } 
                 </div> 
+                <Link to="/login">Already have account? Login Here</Link>
+                <br /> 
                 <button 
                     type="Submit" 
                     className="btn btn-primary mb-3"> 
