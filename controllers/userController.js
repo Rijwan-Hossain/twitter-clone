@@ -149,6 +149,16 @@ const login = (req, res) => {
         }) 
 } 
 
+// to display in front-end 
+// someone is logged in or logged out
+const logout = (req, res) => { 
+    let { id } = req.body 
+    User.findByIdAndUpdate( 
+        {_id: id}, 
+        {$set: {isLogin: false}} 
+    ) 
+} 
+
 
 const users = (req, res) => { 
     User.find() 
@@ -208,8 +218,9 @@ const updateUser = (req, res) => {
 module.exports = { 
     registration, 
     login, 
+    logout, 
     users, 
     singleUser, 
-    updateUser
+    updateUser 
 } 
 

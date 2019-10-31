@@ -16,16 +16,14 @@ import { SET_USER } from './store/actions/actionTypes'
 const token = localStorage.getItem('token') 
 
 if (token) { 
-    console.log('got the token');
-    
     let decode = jwtDecode(token) 
     let user = {
         ...decode
     } 
-    
+
     store.dispatch({ 
         type: SET_USER, 
-        payload: user
+        payload: user 
     }) 
 
     if (token) { 

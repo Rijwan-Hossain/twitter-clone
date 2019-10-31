@@ -28,12 +28,7 @@ function Form(props) {
 
                 if(res.data.status === 'Success') { 
                     localStorage.setItem('token', res.data.token) 
-                    props.history.push({ 
-                        pathname: '/', 
-                        state: { 
-                            user: res.data.user 
-                        } 
-                    }) 
+                    props.history.push('/') 
                 } 
             }) 
             .catch(err => { 

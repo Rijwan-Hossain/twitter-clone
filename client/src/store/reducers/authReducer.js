@@ -1,4 +1,4 @@
-import { SET_USER } from '../actions/actionTypes'
+import { SET_USER, DELETE_USER } from '../actions/actionTypes'
 
 let initState = { 
     isAuthenticated: false, 
@@ -13,6 +13,9 @@ const authReducer = (state = initState, action) => {
                 user: action.payload  
             } 
         } 
+        case DELETE_USER: {
+            return action.payload 
+        }
         default: { 
             return state 
         } 
