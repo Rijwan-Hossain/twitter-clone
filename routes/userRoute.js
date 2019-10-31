@@ -11,7 +11,7 @@ const {
 
 route.post('/registration', registration) 
 route.post('/login', login) 
-route.get('/logout', logout) 
+route.patch('/logout', logout) 
 route.get('/users', users) 
 route.get('/user/:id', singleUser) 
 route.patch('/user/:id', updateUser) 

@@ -11,10 +11,12 @@ function Nav(props) {
    let state = useSelector(state => state.auth)
 
    const logout = () => { 
-      props.dataDeleteFromRedux(state.user); 
       localStorage.removeItem('token');
+      props.dataDeleteFromRedux(state.user); 
+      axios.patch('/api/logout', state.user) 
+      .then(() => {}) 
+      .catch(() => {}) 
       props.history.push('/');
-      axios.post('/api/logout', state.user);
    } 
 
    return ( 

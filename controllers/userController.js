@@ -153,10 +153,22 @@ const login = (req, res) => {
 // someone is logged in or logged out
 const logout = (req, res) => { 
     let { id } = req.body 
+    
     User.findByIdAndUpdate( 
         {_id: id}, 
-        {$set: {isLogin: false}} 
+        {$set: {isLogin: false}}, 
+        {new: true} 
     ) 
+        .then(response => { 
+            res.json({ 
+                response  
+            }) 
+        }) 
+        .catch(err => { 
+            res.json({ 
+                message: 'Server Error'
+            }) 
+        }) 
 } 
 
 
