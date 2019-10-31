@@ -4,29 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'; 
-import jwtDecode from 'jwt-decode'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
+import { Provider } from 'react-redux'; 
+import store from './store/index'; 
 
-import { Provider } from 'react-redux'
-import store from './store/index'
 
 // setAuthToken 
-const token = localStorage.getItem('auth_token')
+const token = localStorage.getItem('token') 
 if (token) { 
-    let decode = jwtDecode(token) 
-    if (token) {  
+    if (token) { 
         axios.defaults.headers.common['Authorization'] = token
     } else { 
-        axios.defaults.headers.common['Authorization'] = ''
+        axios.defaults.headers.common['Authorization'] = '' 
     } 
-    // setAuthToken(token)
-    // store.dispatch({
-    //     type: Types.SET_USER,
-    //     payload: {
-    //         user: decode
-    //     }
-    // })
-}
+} 
 
 ReactDOM.render( 
     <Provider store={store}> 

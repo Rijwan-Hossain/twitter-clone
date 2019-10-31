@@ -117,25 +117,21 @@ const login = (req, res) => {
                     {$set: {isLogin: true}}, 
                     {new: true}) 
                     .then(loginUser => { 
-                        const payload = { 
+                        let payload = {
                             id: loginUser._id, 
-                            email: loginUser.email 
-                        } 
-        
-                        const token = jwt.sign(payload, 'SECRET', {expiresIn: '6h'}) 
-                        
-                        let sendUserData = {
-                            id: loginUser._id, 
+                            name: loginUser.name, 
                             email: loginUser.email, 
                             isLogin: loginUser.isLogin, 
                             bio: loginUser.bio || '', 
                             avatar: loginUser.avatar || ''
                         } 
+
+                        const token = jwt.sign(payload, 'SECRET', {expiresIn: '6h'}) 
                         
                         return res.json({ 
                             status: 'Success', 
-                            token: `Bearer ${token}`, 
-                            user: sendUserData 
+                            payload,
+                            token: `Bearer ${token}`  
                         }) 
                     }) 
                     .catch(err => {

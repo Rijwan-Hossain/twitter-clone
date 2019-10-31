@@ -1,7 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import jwtDecode from 'jwt-decode' 
 
 function Nav() {
+   // let [isLogin, setIsLogin] = useState(false) 
+   // try { 
+   //    let token = localStorage.getItem('token').split(' ')[1] 
+   //    setIsLogin(jwtDecode(token.isLogin)); 
+   // } 
+   // catch (error) {} 
+
+   // useEffect(() => { 
+
+   // }, [isLogin]) 
+   
+
    return (
       <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
          <div className='container'>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react' 
 import axios from 'axios'
 import { withRouter, Link } from 'react-router-dom' 
+import { connect } from 'react-redux'
+import { SET_USER } from '../../store/actions/actionTypes'
 
 function Form(props) { 
     let [email, setEmail] = useState('') 
@@ -8,27 +10,28 @@ function Form(props) {
 
     // Error variables 
     let [emailMsg, setEmailMsg] = useState(false)
-    let[wrongPass, setWrongPass] = useState(false)
+    let [wrongPass, setWrongPass] = useState(false)
     let [err, setErr] = useState(false) 
 
     const submitHandler = (e) => { 
         e.preventDefault() 
         axios.post('/api/login', {email, password}) 
             .then(res => { 
-                let {invalidEmailMsg} = res.data 
-                setEmailMsg(invalidEmailMsg) 
-                let {invalidPassMsg} = res.data 
-                setWrongPass(invalidPassMsg) 
-                let {error} = res.data 
-                setErr(error) 
+                props.dataSaveToRedux(res.data.payload); 
+                
+                let {invalidEmailMsg} = res.data; 
+                setEmailMsg(invalidEmailMsg); 
+                let {invalidPassMsg} = res.data; 
+                setWrongPass(invalidPassMsg); 
+                let {error} = res.data; 
+                setErr(error); 
 
                 if(res.data.status === 'Success') { 
                     localStorage.setItem('token', res.data.token) 
-                    // props.history.push('/') 
                     props.history.push({ 
                         pathname: '/', 
                         state: { 
-                            user: res.data.user
+                            user: res.data.user 
                         } 
                     }) 
                 } 
@@ -111,4 +114,13 @@ function Form(props) {
     ) 
 } 
 
-export default withRouter(Form) 
+const mapDispatchToProps = (dispatch) => { 
+    return { 
+        dataSaveToRedux: (user) => dispatch({ 
+            type: SET_USER, 
+            payload: user
+        }) 
+    } 
+} 
+
+export default connect(null, mapDispatchToProps)(withRouter(Form)) 
