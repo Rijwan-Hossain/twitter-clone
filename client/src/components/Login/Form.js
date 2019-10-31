@@ -17,8 +17,6 @@ function Form(props) {
         e.preventDefault() 
         axios.post('/api/login', {email, password}) 
             .then(res => { 
-                props.dataSaveToRedux(res.data.payload); 
-                
                 let {invalidEmailMsg} = res.data; 
                 setEmailMsg(invalidEmailMsg); 
                 let {invalidPassMsg} = res.data; 
@@ -27,6 +25,7 @@ function Form(props) {
                 setErr(error); 
 
                 if(res.data.status === 'Success') { 
+                    props.dataSaveToRedux(res.data.payload); 
                     localStorage.setItem('token', res.data.token) 
                     props.history.push('/') 
                 } 
@@ -113,7 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     return { 
         dataSaveToRedux: (user) => dispatch({ 
             type: SET_USER, 
-            payload: user
+            payload: user 
         }) 
     } 
 } 
