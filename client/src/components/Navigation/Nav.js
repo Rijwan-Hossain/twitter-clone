@@ -1,19 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import jwtDecode from 'jwt-decode' 
+import { useSelector } from 'react-redux'
 
-function Nav() {
-   // let [isLogin, setIsLogin] = useState(false) 
-   // try { 
-   //    let token = localStorage.getItem('token').split(' ')[1] 
-   //    setIsLogin(jwtDecode(token.isLogin)); 
-   // } 
-   // catch (error) {} 
 
-   // useEffect(() => { 
-
-   // }, [isLogin]) 
-   
+function Nav() { 
+   let user = useSelector(state => state.auth) 
 
    return (
       <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
@@ -33,7 +24,7 @@ function Nav() {
             <div className='collapse navbar-collapse' id='nav'> 
                <ul className='navbar-nav ml-auto'> 
                   { 
-                     null ? 
+                     user.isAuthenticated ? 
                      <React.Fragment> 
                         <li className='nav-item'> 
                            <NavLink to='/' activeClassName='active' exact> 

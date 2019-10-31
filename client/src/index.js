@@ -8,16 +8,36 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux'; 
 import store from './store/index'; 
 
+import jwtDecode from 'jwt-decode'
+import { SET_USER } from './store/actions/actionTypes'
+
 
 // setAuthToken 
 const token = localStorage.getItem('token') 
+
 if (token) { 
+    console.log('got the token');
+    
+    let decode = jwtDecode(token) 
+    let user = {
+        ...decode
+    } 
+    
+    store.dispatch({ 
+        type: SET_USER, 
+        payload: user
+    }) 
+
     if (token) { 
         axios.defaults.headers.common['Authorization'] = token
     } else { 
         axios.defaults.headers.common['Authorization'] = '' 
     } 
 } 
+
+
+
+
 
 ReactDOM.render( 
     <Provider store={store}> 
