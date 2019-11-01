@@ -3,6 +3,7 @@ const cors = require('cors')
 const morgan = require('morgan') 
 const mongoose = require('mongoose') 
 const userRoute = require('./routes/userRoute') 
+const twittRoute = require('./routes/twittRoute') 
 
 const app = express() 
 
@@ -14,6 +15,7 @@ app.use(morgan('dev'))
 
 // Route 
 app.use('/api', userRoute) 
+app.use('/api', twittRoute)  
 app.get('/', (req, res) => { 
     res.status(200).json({ 
         message: 'Hello World for home' 

@@ -4,6 +4,7 @@ import Nav from './components/Navigation/Nav'
 import Home from './components/Home/Home'
 import Registration from './components/Registration/Registration'
 import Login from './components/Login/Login'
+import Profile from './components/Profile/Profile'
 
 function App() { 
   return ( 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" component={Home} exact /> 
           <Route path="/registration" component={Registration} /> 
           <Route path="/login" component={Login} /> 
+          <Route path="/profile" component={Profile} /> 
         </Switch> 
       </div> 
     </BrowserRouter> 

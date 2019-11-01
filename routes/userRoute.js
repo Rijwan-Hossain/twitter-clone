@@ -8,6 +8,7 @@ const {
     singleUser, 
     updateUser 
 } = require('../controllers/userController') 
+const authenticate = require('../middlewares/authentication')
 
 route.post('/registration', registration) 
 route.post('/login', login) 
