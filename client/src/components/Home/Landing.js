@@ -4,12 +4,13 @@ import me from '../../assets/images/me.jpg'
 function Landing() { 
     return ( 
         <React.Fragment> 
-            <h3>Welcome to Rijwan Twitter.</h3> 
-            <p style={{
-                fontSize: '25px'
+            <h3>Welcome to Meet-Twitt.</h3> 
+            <h4 style={{
+                fontSize: '25px', 
+                color: '#f50057'
             }}>
                 Please signup & login to enjoy the services. 
-            </p> 
+            </h4> 
             <div style={{ 
                 position: 'relative', 
                 width: '602px'
