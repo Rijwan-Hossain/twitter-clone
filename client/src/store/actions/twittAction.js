@@ -2,10 +2,10 @@ import axios from 'axios'
 import { CREATE_TWITT } from './actionTypes'
 
 export const createTwitt = () => dispatch => { 
-    dispatch({
+    dispatch({ 
         type: CREATE_TWITT, 
-        payload: ''
-    })
+        payload: '' 
+    }) 
     axios.post('/api/twitt') 
         .then() 
         .catch() 

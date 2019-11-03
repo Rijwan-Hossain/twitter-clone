@@ -19,6 +19,12 @@ const TwittSchema = new Schema({
     downVote: { 
         type: Number, 
         default: 0 
+    }, 
+    display: { 
+        type: String, 
+        required: true, 
+        default: 'public', 
+        trim: true 
     } 
 }, 
 { 

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { DELETE_USER } from '../../store/actions/actionTypes'
-
+import './nav.css'
 
 function Nav(props) {
    let state = useSelector(state => state.auth)
@@ -40,14 +40,14 @@ function Nav(props) {
                      state.isAuthenticated ?
                         <React.Fragment>
                            <li className='nav-item'>
-                              <NavLink to='/' activeClassName='active' exact>
+                              <NavLink className="link" to='/' activeClassName='active' exact>
                                  <span className='nav-link'>
                                     Home
                               </span>
                               </NavLink>
                            </li>
                            <li className='nav-item'>
-                              <NavLink to='/Profile' activeClassName='active'>
+                              <NavLink className="link" to='/Profile' activeClassName='active'>
                                  <span className='nav-link'>
                                     Profile
                               </span>
@@ -64,14 +64,14 @@ function Nav(props) {
                         :
                         <React.Fragment>
                            <li className='nav-item'>
-                              <NavLink to='/registration' activeClassName='active'>
+                              <NavLink className="link" to='/registration' activeClassName='active'>
                                  <span className='nav-link'>
                                     Registration
                               </span>
                               </NavLink>
                            </li>
                            <li className='nav-item'>
-                              <NavLink to='/login' activeClassName='active'>
+                              <NavLink className="link" to='/login' activeClassName='active'>
                                  <span className='nav-link'>
                                     Login
                               </span>

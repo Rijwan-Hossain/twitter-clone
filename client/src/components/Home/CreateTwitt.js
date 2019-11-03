@@ -3,7 +3,9 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import avatar from '../../assets/images/avatar.jpg'
 import photo from '../../assets/images/photo.png'
-import './create.css'
+import './create.css' 
+import 'react-dropdown/style.css' 
+import Dropdown from 'react-dropdown' 
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/rijyan/upload' 
 const CLOUDINARY_UPLOAD_PRESET = 'yrsdydlb'
@@ -13,9 +15,11 @@ function CreateTwitt() {
     let [area, setArea] = useState(4) 
     let [value, setValue] = useState('') 
     let [imageUrl, setImageUrl] = useState('') 
+    let [option, setOption] = useState('public') 
 
     let state = useSelector(state => state.auth); 
     
+    const options = ['public', 'only me']
 
     const fileHandler = (e) => { 
         let file = e.target.files[0] 
@@ -41,14 +45,15 @@ function CreateTwitt() {
             }) 
     
     } 
-
+    
     return ( 
-        <div style={{
+        <div 
+            style={{ 
                 border: '1px solid #e0e0e0',
                 borderRadius: '5px', 
                 padding: '20px', 
                 boxShadow: area === 8 ? '0px 0px 30px 5px rgb(230, 230, 230)' : null, 
-                transition: area === 8 ? 'all .3s' : null
+                transition: area === 8 ? 'all .3s' : null 
             }}> 
             <div style={{borderBottom: '1px solid #757575'}}
                 className="d-flex">
@@ -76,7 +81,8 @@ function CreateTwitt() {
                 { 
                     imageUrl && 
                     <div> 
-                        <img src={imageUrl} alt="image"/>  
+                        <img src={imageUrl} 
+                            alt="image" height="300px"/>  
                         <p style={{ 
                             fontSize: '12px',  
                             color: '#ff5252' 
@@ -86,7 +92,7 @@ function CreateTwitt() {
                     </div> 
                 } 
             </div> 
-            <div> 
+            <div style={{display: 'flex'}}> 
                 <label style={{cursor: 'pointer'}}
                     className="badge badge-pill badge-dark p-2 m-2">
                     <img src={photo} height="13px" className="mr-1" />
@@ -98,8 +104,19 @@ function CreateTwitt() {
                         id="File" /> 
                         {/*  size="60"  */}
                 </label> 
-                <button className="btn btn-success ml-2"> 
-                    Tweet 
+                <Dropdown 
+                    className="mt-2"
+                    options={options} 
+                    onChange={() => { 
+                        option === 'public' 
+                        ? setOption('only me')
+                        : setOption('public')
+                    }} 
+                    value={option} /> 
+                <button 
+                    // style={{maxHeight: '40px'}}
+                    className="btn btn-success ml-3 mt-2"> 
+                    Twitt 
                 </button> 
             </div> 
         </div> 
