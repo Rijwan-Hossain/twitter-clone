@@ -14,9 +14,6 @@ function NewTwitt({twitt}) {
     let [like, setLike] = useState(twitt.upVote) 
     let [dislike, setDislike] = useState(twitt.downVote) 
 
-    let [upclick, setUpclick] = useState(false)
-    let [downclick, setDownclick] = useState(false)
-
     const likeHandler = () => {
         axios.get(`/api/twitt/${twitt._id}/like`)
             .then(res => {

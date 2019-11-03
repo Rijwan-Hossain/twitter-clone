@@ -84,7 +84,7 @@ function CreateTwitt() {
                 <img src={state.user.avatar ? state.user.avatar : avatar} 
                     height="50px"
                     width="50px"
-                    alt="Pic"/> 
+                    alt="your pic"/> 
                 <textarea style={{
                     width: '100%',
                     borderStyle: 'none', 
