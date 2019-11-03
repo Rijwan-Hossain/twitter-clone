@@ -8,16 +8,21 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css' 
 import './create.css' 
 
+import NewTwitt from './NewTwitt'
+
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/rijyan/upload' 
 const CLOUDINARY_UPLOAD_PRESET = 'yrsdydlb'
 
 
 function CreateTwitt() { 
+    let [value, setValue] = useState('') 
     let state = useSelector(state => state.auth); 
+    let twittRes = useSelector(state => state.twitt); 
+    
     let dispatch = useDispatch(); 
 
     let [area, setArea] = useState(4) 
-    let [value, setValue] = useState('') 
+    
     let [imageUrl, setImageUrl] = useState('') 
     let [option, setOption] = useState('public') 
 
@@ -58,9 +63,13 @@ function CreateTwitt() {
             display: option 
         } 
         dispatch(postTwitt(twitt)); 
+
+        setValue(''); 
+        setOption('public'); 
     } 
 
     return ( 
+        <div>
         <div 
             style={{ 
                 background: 'white', 
@@ -70,7 +79,7 @@ function CreateTwitt() {
                 boxShadow: area === 8 ? '0px 0px 30px 5px rgb(230, 230, 230)' : null, 
                 transition: area === 8 ? 'all .3s' : null 
             }}> 
-            <div style={{borderBottom: '1px solid #757575'}}
+            <div style={{borderBottom: '1px solid #e0e0e0'}}
                 className="d-flex">
                 <img src={state.user.avatar ? state.user.avatar : avatar} 
                     height="50px"
@@ -87,7 +96,13 @@ function CreateTwitt() {
                     transition: area === 8 ? 'all .3s' : null 
                 }} 
                     onFocus={() => setArea(8)} 
-                    onBlur={() => setArea(4)}
+                    onBlur={() => {
+                        value ? 
+                        setTimeout(() => {
+                            setArea(4);
+                        }, 500) 
+                        : setArea(4)
+                    }} 
                     placeholder="Express yourself..."
                     value={value} 
                     onChange={(e) => {setValue(e.target.value)}}
@@ -134,6 +149,8 @@ function CreateTwitt() {
                     Twitt 
                 </button> 
             </div> 
+        </div> 
+        { twittRes.isTwitt ? <NewTwitt twitt={twittRes.response.data} /> : null } 
         </div> 
     ) 
 } 
