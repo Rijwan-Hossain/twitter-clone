@@ -1,12 +1,19 @@
 const Twitt = require('../models/Twitt')
 
 // route.post('/twitt') 
-const createTwitt = (req, res) => {
+const createTwitt = (req, res) => { 
     const twitt = new Twitt({ 
         author: req.body.author, 
         body: req.body.body, 
-        imageUrl: req.body.imageUrl || null 
+        imageUrl: req.body.imageUrl, 
+        display: req.body.display
     }) 
+    console.log('req.body');
+    console.log(req.body);
+    
+    console.log('twitt');
+    console.log('twitt');
+    console.log(twitt);
 
     twitt.save() 
         .then(data => { 
@@ -17,7 +24,7 @@ const createTwitt = (req, res) => {
         }) 
         .catch(err => { 
             return res.json({ 
-                error: 'Server Error' 
+                error: err 
             }) 
         }) 
 }

@@ -1,13 +1,18 @@
 import axios from 'axios' 
 import { CREATE_TWITT } from './actionTypes'
 
-export const createTwitt = () => dispatch => { 
-    dispatch({ 
-        type: CREATE_TWITT, 
-        payload: '' 
-    }) 
-    axios.post('/api/twitt') 
-        .then() 
-        .catch() 
-}
+export const postTwitt = (twitt) => dispatch => { 
+    axios.post('/api/twitt', twitt) 
+        .then(res => { 
+            dispatch({ 
+                type: CREATE_TWITT, 
+                payload: res.data 
+            }) 
+        }) 
+        .catch(err => {
+            console.log('from action');
+            
+            console.log(err)
+        }) 
+} 
 

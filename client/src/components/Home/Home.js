@@ -13,12 +13,7 @@ function Home() {
          state.isAuthenticated 
          ? 
          <React.Fragment> 
-            <div> 
-               <CreateTwitt /> 
-               {/* <h4>Yahooo! I am a logged in user</h4> 
-               <h5>I am {state.user.name}</h5> 
-               <h5>My email: {state.user.email}</h5>  */}
-            </div> 
+            <CreateTwitt /> 
          </React.Fragment> 
          : 
          <React.Fragment> <Landing /> </React.Fragment> 

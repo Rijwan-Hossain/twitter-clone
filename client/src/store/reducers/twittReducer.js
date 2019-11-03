@@ -1,15 +1,17 @@
 import { CREATE_TWITT } from '../actions/actionTypes' 
 
 const initState = { 
-    author: null, 
-    body: null, 
-    imageUrl: null 
+    isTwitt: false, 
+    response: {} 
 } 
 
 const twittReducer = (state = initState, action) => { 
     switch (action.type) { 
-        case CREATE_TWITT: {  
-
+        case CREATE_TWITT: { 
+            return { 
+                isTwitt: true, 
+                response: action.payload 
+            } 
         } 
         default: return state; 
     } 

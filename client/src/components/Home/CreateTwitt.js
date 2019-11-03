@@ -1,23 +1,27 @@
-import React, {useState} from 'react' 
+import React, {useState } from 'react' 
+import { postTwitt } from '../../store/actions/twittAction'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import avatar from '../../assets/images/avatar.jpg'
 import photo from '../../assets/images/photo.png'
-import './create.css' 
-import 'react-dropdown/style.css' 
 import Dropdown from 'react-dropdown' 
+import 'react-dropdown/style.css' 
+import './create.css' 
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/rijyan/upload' 
 const CLOUDINARY_UPLOAD_PRESET = 'yrsdydlb'
 
 
 function CreateTwitt() { 
+    let state = useSelector(state => state.auth); 
+    let dispatch = useDispatch(); 
+
     let [area, setArea] = useState(4) 
     let [value, setValue] = useState('') 
     let [imageUrl, setImageUrl] = useState('') 
     let [option, setOption] = useState('public') 
 
-    let state = useSelector(state => state.auth); 
+    
     
     const options = ['public', 'only me']
 
@@ -46,9 +50,20 @@ function CreateTwitt() {
     
     } 
     
+    const create = () => { 
+        let twitt = { 
+            author: state.user.id, 
+            body: value, 
+            imageUrl, 
+            display: option 
+        } 
+        dispatch(postTwitt(twitt)); 
+    } 
+
     return ( 
         <div 
             style={{ 
+                background: 'white', 
                 border: '1px solid #e0e0e0',
                 borderRadius: '5px', 
                 padding: '20px', 
@@ -114,8 +129,8 @@ function CreateTwitt() {
                     }} 
                     value={option} /> 
                 <button 
-                    // style={{maxHeight: '40px'}}
-                    className="btn btn-success ml-3 mt-2"> 
+                    onClick={create}
+                    className="btn btn-success ml-2 mt-2"> 
                     Twitt 
                 </button> 
             </div> 
