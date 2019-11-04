@@ -3,7 +3,7 @@ import { postTwitt } from '../../store/actions/twittAction'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import avatar from '../../assets/images/avatar.jpg'
-import photo from '../../assets/images/photo.png'
+import photoIcon from '../../assets/images/photo.png'
 import Dropdown from 'react-dropdown' 
 import 'react-dropdown/style.css' 
 import './create.css' 
@@ -125,7 +125,7 @@ function CreateTwitt() {
             <div style={{display: 'flex'}}> 
                 <label style={{cursor: 'pointer'}}
                     className="badge badge-pill badge-dark p-2 m-2">
-                    <img src={photo} height="13px" className="mr-1" />
+                    <img src={photoIcon} height="13px" className="mr-1" />
                     photo 
                     <input 
                         type="file"
@@ -150,7 +150,13 @@ function CreateTwitt() {
                 </button> 
             </div> 
         </div> 
-        { twittRes.isTwitt ? <NewTwitt twitt={twittRes.response.data} /> : null } 
+        { 
+            twittRes.isTwitt 
+            ? 
+            <NewTwitt twitt={twittRes.response.data} /> 
+            : 
+            null 
+        } 
         </div> 
     ) 
 } 

@@ -10,6 +10,7 @@ const {
 } = require('../controllers/userController') 
 const authenticate = require('../middlewares/authentication')
 
+// domain/api/registration
 route.post('/registration', registration) 
 route.post('/login', login) 
 route.patch('/logout', logout) 
