@@ -190,17 +190,13 @@ const users = (req, res) => {
 
 const singleUser = (req, res) => {
     let { id } = req.params 
-    console.log(id);
-    
     User.findById(id) 
         .then(user => { 
-            console.log(user);
-            
             res.status(200).json({ 
-                status: 'success',
+                status: 'success', 
                 user 
-            })
-        })
+            }) 
+        }) 
         .catch(err => {
             return res.json({ 
                 status: 'Fail',

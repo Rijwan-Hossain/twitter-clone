@@ -8,13 +8,7 @@ const createTwitt = (req, res) => {
         imageUrl: req.body.imageUrl, 
         display: req.body.display
     }) 
-    console.log('req.body');
-    console.log(req.body);
     
-    console.log('twitt');
-    console.log('twitt');
-    console.log(twitt);
-
     twitt.save() 
         .then(data => { 
             res.json({ 
@@ -37,7 +31,7 @@ const getAllTwitt = (req, res) => {
         .then(data => { 
             res.json({ 
                 message: 'Success', 
-                data 
+                twitts: data 
             }) 
         }) 
         .catch(err => { 

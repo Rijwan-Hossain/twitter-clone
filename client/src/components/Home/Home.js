@@ -2,6 +2,7 @@ import React from 'react'
 import Landing from './Landing'
 import { useSelector } from 'react-redux'
 import CreateTwitt from './CreateTwitt'
+import AllTwitt from './AllTwitt'
 
 function Home() { 
    let state = useSelector(state => state.auth) 
@@ -14,6 +15,7 @@ function Home() {
          ? 
          <React.Fragment> 
             <CreateTwitt /> 
+            <AllTwitt /> 
          </React.Fragment> 
          : 
          <React.Fragment> <Landing /> </React.Fragment> 

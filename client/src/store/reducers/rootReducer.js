@@ -4,7 +4,7 @@ import twittReducer from './twittReducer'
 const rootReducer = combineReducers({ 
     // reducers 
     auth: authReducer, 
-    twitt: twittReducer
+    twitt: twittReducer 
 }) 
 
 export default rootReducer; 
