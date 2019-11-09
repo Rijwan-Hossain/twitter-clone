@@ -18,8 +18,9 @@ export const getAllTwitt = () => dispatch => {
 
 export const postTwitt = (twitt) => dispatch => { 
     axios.post('/api/twitt', twitt) 
-        .then(() => { 
-            dispatch({ type: CREATE_TWITT }) 
+        .then((res) => { 
+            let {data} = res.data;
+            dispatch({ type: CREATE_TWITT, payload: data }) 
         }) 
         .catch(err => { console.log(err) }) 
 } 

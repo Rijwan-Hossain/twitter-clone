@@ -5,8 +5,7 @@ const createTwitt = (req, res) => {
     const twitt = new Twitt({ 
         author: req.body.author, 
         body: req.body.body, 
-        imageUrl: req.body.imageUrl, 
-        display: req.body.display
+        display: req.body.display 
     }) 
     
     twitt.save() 
@@ -21,7 +20,7 @@ const createTwitt = (req, res) => {
                 error: err 
             }) 
         }) 
-}
+} 
 
 
 // route.get('/twitt') 
@@ -31,6 +30,7 @@ const getAllTwitt = (req, res) => {
         .then(data => { 
             res.json({ 
                 message: 'Success', 
+                length: data.length,
                 twitts: data 
             }) 
         }) 

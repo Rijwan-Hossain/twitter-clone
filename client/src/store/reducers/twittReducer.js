@@ -16,13 +16,16 @@ const twittReducer = (state = initState, action) => {
         case CREATE_TWITT: { 
             return { 
                 ...state, 
-                isTwitt: true 
+                isTwitt: true, 
+                allTwitts: state.allTwitts.concat(action.payload), 
+                twittLength: state.allTwitts.length 
             } 
         } 
         case GET_ALL_TWITT: { 
             return { 
                 ...state, 
-                allTwitts: action.payload 
+                allTwitts: action.payload, 
+                twittLength: state.allTwitts.length 
             } 
         } 
         case DELETE_TWITT: {
