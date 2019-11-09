@@ -6,7 +6,6 @@ import SingleTwitt from './SingleTwitt'
 function AllTwitt() { 
     let dispatch = useDispatch() 
     let {allTwitts: twitts} = useSelector(state => state.twitt)
-    console.log('twitts');
     console.log(twitts);
     
     let [load, setLoad] = useState(true) 
