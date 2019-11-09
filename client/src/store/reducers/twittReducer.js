@@ -1,7 +1,9 @@
 import { 
     CREATE_TWITT, 
     DELETE_TWITT, 
-    GET_ALL_TWITT
+    GET_ALL_TWITT, 
+    LIKE_TWITT, 
+    DISLIKE_TWITT
 } from '../actions/actionTypes' 
 
 const initState = { 
@@ -24,8 +26,7 @@ const twittReducer = (state = initState, action) => {
         case GET_ALL_TWITT: { 
             return { 
                 ...state, 
-                allTwitts: action.payload, 
-                twittLength: state.allTwitts.length 
+                allTwitts: action.payload 
             } 
         } 
         case DELETE_TWITT: {
@@ -34,6 +35,21 @@ const twittReducer = (state = initState, action) => {
                 isDeleted: true 
             }
         } 
+        case LIKE_TWITT: { 
+            console.log('reducer'); 
+            console.log(action.payload); 
+            
+            return {
+                ...state, 
+                allTwitts: action.payload 
+            }
+        }
+        case DISLIKE_TWITT: {
+            return {
+                ...state, 
+                allTwitts: action.payload 
+            }
+        }
         default: return state; 
     } 
 } 

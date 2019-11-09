@@ -2,15 +2,14 @@ import axios from 'axios'
 import { 
     CREATE_TWITT, 
     DELETE_TWITT, 
-    GET_ALL_TWITT
+    GET_ALL_TWITT, 
+    LIKE_TWITT, 
+    DISLIKE_TWITT
 } from './actionTypes'
 
 export const getAllTwitt = () => dispatch => { 
     axios.get('/api/twitt') 
         .then(res => { 
-            console.log('res.data');
-            console.log(res.data);
-            
             dispatch({ 
                 type: GET_ALL_TWITT, payload: res.data.twitts 
             }) 
@@ -28,10 +27,39 @@ export const postTwitt = (twitt) => dispatch => {
         .catch(err => { console.log(err) }) 
 } 
 
+
 export const deleteTwitt = (id) => dispatch => { 
     axios.delete(`/api/twitt/${id}`) 
         .then(res => { 
             dispatch({ type: DELETE_TWITT }) 
         }) 
         .catch(err => { console.log(err) }) 
-}
+} 
+
+
+export const likeTwitt = (id) => dispatch => { 
+    axios.get(`/api/twitt/${id}/like`) 
+        .then(res => { 
+            console.log(res.data); 
+            dispatch({ 
+                type: LIKE_TWITT, 
+                payload: res.data.twitts 
+            }) 
+        }) 
+        .catch(err => console.log('Server Error while like')) 
+} 
+
+
+export const dislikeTwitt = (id) => dispatch => { 
+    console.log(id);
+    
+    axios.get(`/api/twitt/${id}/dislike`) 
+        .then(res => { 
+            console.log(res.data); 
+            dispatch({ 
+                type: DISLIKE_TWITT, 
+                payload: res.data.twitts 
+            }) 
+        }) 
+        .catch(err => console.log('Server Error while dislike')) 
+} 

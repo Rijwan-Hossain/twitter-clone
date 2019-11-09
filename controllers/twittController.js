@@ -26,6 +26,7 @@ const createTwitt = (req, res) => {
 // route.get('/twitt') 
 const getAllTwitt = (req, res) => { 
     Twitt.find() 
+        .sort({date:1})
         .populate('author') 
         .then(data => { 
             res.json({ 
@@ -100,13 +101,17 @@ const DeleteTwitt = (req, res) => {
 const upVoteTwitt = (req, res) => { 
     let { id } = req.params; 
     Twitt.findById(id) 
-        .then(twitt => {
+        .then(twitt => { 
             Twitt.findByIdAndUpdate({_id: id}, {$set: {upVote: twitt.upVote + 1}}, {new: true}) 
-                .then(data => { 
-                    return res.json({ 
-                        message: 'Update Successful', 
-                        data 
-                    }) 
+                .then(() => { 
+                    Twitt.find() 
+                        .populate('author') 
+                        .then(data => {
+                            return res.json({ 
+                                message: 'Update Successful', 
+                                twitts: data 
+                            }) 
+                        })
                 }) 
             }) 
             .catch(err => { 
@@ -121,13 +126,17 @@ const upVoteTwitt = (req, res) => {
 const downVoteTwitt = (req, res) => { 
     let { id } = req.params; 
     Twitt.findById(id) 
-        .then(twitt => {
+        .then(twitt => { 
             Twitt.findByIdAndUpdate({_id: id}, {$set: {downVote: twitt.downVote + 1}}, {new: true}) 
-                .then(data => { 
-                    return res.json({ 
-                        message: 'Update Successful', 
-                        data 
-                    }) 
+                .then(() => {  
+                    Twitt.find()  
+                    .populate('author') 
+                        .then(data => { 
+                            return res.json({ 
+                                message: 'Update Successful', 
+                                twitts: data 
+                            }) 
+                        }) 
                 }) 
             }) 
     
