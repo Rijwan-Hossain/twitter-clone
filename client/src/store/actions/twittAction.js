@@ -8,6 +8,9 @@ import {
 export const getAllTwitt = () => dispatch => { 
     axios.get('/api/twitt') 
         .then(res => { 
+            console.log('res.data');
+            console.log(res.data);
+            
             dispatch({ 
                 type: GET_ALL_TWITT, payload: res.data.twitts 
             }) 

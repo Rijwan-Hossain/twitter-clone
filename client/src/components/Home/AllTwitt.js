@@ -1,23 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllTwitt } from '../../store/actions/twittAction'
-import NewTwitt from './NewTwitt'
 
 function AllTwitt() { 
     let dispatch = useDispatch() 
-    let { response: twitts } = useSelector(state => state.twitt)
+    let {allTwitts: twitts} = useSelector(state => state.twitt)
+    console.log('twitts');
+    console.log(twitts);
     
     useEffect(() => { 
         dispatch(getAllTwitt()) 
     }, []) 
     
     
-    
-    
-
     return ( 
         <> 
-            <h3>All twitts</h3>
+            <h3>{twitts.length} twitts</h3>
         </>
     ) 
 } 
