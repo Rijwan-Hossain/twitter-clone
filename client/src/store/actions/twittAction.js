@@ -31,9 +31,12 @@ export const postTwitt = (twitt) => dispatch => {
 export const deleteTwitt = (id) => dispatch => { 
     axios.delete(`/api/twitt/${id}`) 
         .then(res => { 
-            dispatch({ type: DELETE_TWITT }) 
+            dispatch({ 
+                type: DELETE_TWITT, 
+                payload: res.data.twitts 
+            }) 
         }) 
-        .catch(err => { console.log(err) }) 
+        .catch(err => { console.log('Server Error while delete') }) 
 } 
 
 

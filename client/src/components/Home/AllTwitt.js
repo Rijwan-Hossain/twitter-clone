@@ -18,22 +18,21 @@ function AllTwitt() {
     return ( 
         <> 
         <div className="mt-5">
-            { 
-                load ? `Loading ${twitts.length ? setLoad(false): ''}` : 
-                <div>
-                    <h3>{twitts.length} twitts</h3> 
-                    <div> 
-                    { 
-                        twitts.map(twitt => { 
-                            return ( 
-                                <SingleTwitt twitt={twitt} /> 
-                            ) 
-                        }) 
-                    } 
-                    </div> 
+        { 
+            load ? `${twitts.length ? setLoad(false): 'Loading Twitts'}` : 
+            <div>
+                <div> 
+                { 
+                    twitts.map(twitt => { 
+                        return ( 
+                            <SingleTwitt twitt={twitt} /> 
+                        ) 
+                    }) 
+                } 
                 </div> 
-            } 
-            </div>
+            </div> 
+        } 
+        </div>
         </> 
     ) 
 } 

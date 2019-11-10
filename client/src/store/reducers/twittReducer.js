@@ -32,13 +32,11 @@ const twittReducer = (state = initState, action) => {
         case DELETE_TWITT: {
             return {
                 ...state, 
-                isDeleted: true 
+                isDeleted: true, 
+                allTwitts: action.payload 
             }
         } 
         case LIKE_TWITT: { 
-            console.log('reducer'); 
-            console.log(action.payload); 
-            
             return {
                 ...state, 
                 allTwitts: action.payload 

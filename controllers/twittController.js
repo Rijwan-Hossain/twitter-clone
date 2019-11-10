@@ -83,11 +83,15 @@ const updateTwitt = (req, res) => {
 const DeleteTwitt = (req, res) => { 
     let { id } = req.params; 
     Twitt.findByIdAndDelete(id) 
-        .then(data => { 
-            res.json({ 
-                message: 'Successfully Deleted', 
-                data 
-            }) 
+        .then(() => { 
+            Twitt.find() 
+                .populate('author') 
+                .then(data => {
+                    return res.json({ 
+                        message: 'Deleted Successful', 
+                        twitts: data 
+                    }) 
+                })
         }) 
         .catch(err => { 
             return res.json({ 
@@ -108,7 +112,7 @@ const upVoteTwitt = (req, res) => {
                         .populate('author') 
                         .then(data => {
                             return res.json({ 
-                                message: 'Update Successful', 
+                                message: 'Upvoted Successful', 
                                 twitts: data 
                             }) 
                         })
@@ -133,7 +137,7 @@ const downVoteTwitt = (req, res) => {
                     .populate('author') 
                         .then(data => { 
                             return res.json({ 
-                                message: 'Update Successful', 
+                                message: 'DownVoted Successful', 
                                 twitts: data 
                             }) 
                         }) 

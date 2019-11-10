@@ -1,11 +1,12 @@
 import React, {useState} from 'react' 
-import {useDispatch} from 'react-redux' 
+import {useSelector, useDispatch} from 'react-redux' 
 import avatar from '../../assets/images/avatar.jpg' 
 import moment from 'moment' 
 import axios from 'axios' 
 import { 
     likeTwitt, 
-    dislikeTwitt 
+    dislikeTwitt, 
+    deleteTwitt
 } from '../../store/actions/twittAction' 
 
 
@@ -15,6 +16,7 @@ function SingleTwitt({twitt}) {
 
     let [click, setClick] = useState(true) 
 
+    let {user: loggedInUser} = useSelector(state => state.auth) 
     let dispatch = useDispatch()
 
     const likeHandler = () => { 
@@ -28,6 +30,12 @@ function SingleTwitt({twitt}) {
         setClick(false)
         if(click) {
             dispatch(dislikeTwitt(id))
+        } 
+    } 
+
+    const deleteHandler = (id) => {
+        if(loggedInUser.id === id) {
+            dispatch(deleteTwitt(twitt._id))
         } 
     } 
 
@@ -58,9 +66,20 @@ function SingleTwitt({twitt}) {
                         }}>
                             {moment(twitt.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                         </p>
-                    </div>
-                </div>
+                    </div> 
+                    { loggedInUser.id === user._id &&
+                    <div className="d-flex mt-1 ml-auto">
+                        
+                        <i className="fa fa-edit fa-lg"></i>
+                        <i 
+                            onClick={() => deleteHandler(user._id)}
+                            style={{marginLeft: '10px', cursor: 'pointer'}}
+                            className="fa fa-remove fa-lg"></i>
+                    </div> 
+                    }
+                </div> 
                 
+
                 {/* twitt body */} 
                 <p className="text-lead" 
                     style={{
@@ -70,6 +89,7 @@ function SingleTwitt({twitt}) {
                         }}>
                     {twitt.body}
                 </p> 
+
 
                 {/* Like & Dislike */}
                 <div className="d-flex">
